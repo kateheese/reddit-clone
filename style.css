@@ -1,0 +1,59 @@
+body {
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+
+a {
+  color: #00B7FF;
+}
+
+.author {
+  text-align: right;
+}
+
+.post-image {
+  width: 250px;
+}
+
+.positive {
+  color: green;
+}
+
+.negative {
+  color: red;
+}
+
+.commentForm {
+  display: inline-block;
+}
+
+.post.ng-enter {
+  animation: fadeIn 1s;
+}
+
+.post.ng-leave {
+  animation: fadeOut 1s;
+}
+
+.submit-form.ng-hide-remove {
+  animation: zoomIn 1s;
+}
+
+.submit-form.ng-hide-add {
+  animation: zoomOut 1s;
+}
+
+.comments.ng-hide-remove {
+  animation: fadeInDown 1s;
+}
+
+.comments.ng-hide-add {
+  animation: fadeOutUp 1s;
+}
+
+.addComment.ng-hide-remove {
+  animation: fadeInDown 1s;
+}
+
+.addComment.ng-hide-add {
+  animation: fadeOutUp 1s;
+}

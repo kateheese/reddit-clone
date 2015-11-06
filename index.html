@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html ng-app="reddit">
+<head>
+  <title>Reddit Clone</title>
+  <link rel="stylesheet" type="text/css" href="style.css">
+  <link rel="stylesheet" type="text/css" href="https://bootswatch.com/flatly/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.4.0/animate.min.css">
+</head>
+<body ng-controller="SubmissionController">
+  <nav class="navbar navbar-inverse">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="#">Reddit Clone</a>
+      </div>
+      <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+        <ul class="nav navbar-nav">
+          <li><a href="#" ng-click="showForm()"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Submit Post</a></li>
+        </ul>
+        <form class="navbar-form navbar-left" role="search">
+          <div class="form-group">
+            <input type="text" class="form-control" placeholder="Search" ng-model="search">
+          </div>
+        </form>
+        <ul class="nav navbar-nav">
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Sort by {{selection}}<span class="caret"></span></a>
+            <ul class="dropdown-menu">
+              <li><a href="#" ng-click="order('-votes')">Votes</a></li>
+              <li><a href="#" ng-click="order('date')">Date</a></li>
+              <li><a href="#" ng-click="order('title')">Title</a></li>
+            </ul>
+          </li>
+        </ul>
+            </ul>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+  <div class="container">
+    <form class="submit-form" name ="postForm" ng-submit="createSubmission()" novalidate ng-show="form">
+      <div class="form-group" ng-class="{'has-error':postForm.title.$invalid && submitted}">
+        <label for="title">Title</label>
+        <input type="text" name="title" class="form-control" placeholder="Title" ng-model="newSubmission.title" required>
+      </div>
+      <div class="form-group" ng-class="{'has-error':postForm.author.$invalid && submitted}">
+        <label for="author">Author</label>
+        <input type="text" name="author" class="form-control" placeholder="Author" ng-model="newSubmission.author" required>
+      </div>
+      <div class="form-group" ng-class="{'has-error':postForm.image.$invalid && submitted}">
+        <label for="image">Image URL</label>
+        <input type="url" name="image" class="form-control" placeholder="Image URL" ng-model="newSubmission.image" required>
+      </div>
+      <div class="form-group" ng-class="{'has-error':postForm.description.$invalid && submitted}">
+        <label for="description">Description</label>
+        <input type="text" name="description" class="form-control" placeholder="Description" ng-model="newSubmission.description" required>
+      </div>
+      <div class="form-group">
+      <input type="submit" class="btn btn-default" value="Submit Post">
+      </div>
+    </form>
+    <div class="well post" ng-repeat="submission in submissions | orderBy: predicate | filter: search">
+      <div class="row">
+        <div class="col-md-3">
+          <img class="post-image" src="{{submission.image}}">
+        </div>
+        <div class="col-md-9">
+          <h3>{{submission.title}} | <span class="glyphicon glyphicon-arrow-up" aria-hidden="true" ng-click="upVote()"></span> <span class="glyphicon glyphicon-arrow-down" aria-hidden="true" ng-click="downVote(submission.id)"></span> <span ng-class="{positive: submission.votes > 0, negative: submission.votes < 0}">{{submission.votes}}</span></h3>
+          <p class="author">By {{submission.author}}</p>
+          <p>{{submission.description}}</p>
+          <p>{{submission.date | date: "MMM d 'at' h:mm a"}} | <span ng-click="show == false ? show = true : show = false"><span class="glyphicon glyphicon-comment" aria-hidden="true"></span> <ng-pluralize count="submission.comments.length"
+          when="{'1': '1 comment',
+                'other': '{} comments'}">
+          </ng-pluralize></span> | <span ng-click="add == false ? add = true : add = false"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span> Add Comment</span></p>
+          <div class="comments" ng-show='show' ng-repeat="comment in submission.comments track by $index">
+            <p><strong>{{comment.author}}</strong> - {{comment.text}}</p>
+          </div>
+            <form class="navbar-form navbar-left addComment" name="commentForm" ng-submit="createComment()" novalidate ng-show='add'>
+            <div class="commentForm" ng-class="{'has-error':commentForm.author.$invalid && submitted}">
+              <label for="title">Author</label>
+              <input type="text" name="author" class="form-control" placeholder="Author" ng-model="newComment.author" required>
+            </div>
+            <div class="commentForm" ng-class="{'has-error':commentForm.text.$invalid && submitted}">
+              <label for="author">Text</label>
+              <input type="text" name="text" class="form-control" placeholder="Text" ng-model="newComment.text" required>
+            </div>
+            <input type="submit" class="btn btn-default" value="Add Comment">
+          </form>
+        </div>
+    </div>
+  </div>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.4/angular.min.js"></script>
+  <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.0-beta.1/angular-animate.js"></script>
+  <script type="text/javascript" src="main.js"></script>
+</body>
+</html>
