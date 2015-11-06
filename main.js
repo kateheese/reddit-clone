@@ -8,6 +8,7 @@ angular.module('reddit', ['ngAnimate'])
     $scope.selection = 'Votes';
     $scope.predicate = '-votes';
     $scope.submitted = false;
+    $scope.submitComment = false;
 
     $scope.order = function(predicate) {
       if(predicate === '-votes') {
@@ -57,9 +58,9 @@ angular.module('reddit', ['ngAnimate'])
         this.submission.comments.push(this.newComment);
         this.newComment = {};
         this.add = false;
-        this.submitted = false;
+        this.submitComment = false;
       } else {
-        this.submitted = true;
+        this.submitComment = true;
       }
     }
 

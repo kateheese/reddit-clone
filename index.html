@@ -82,11 +82,11 @@
             <p><strong>{{comment.author}}</strong> - {{comment.text}}</p>
           </div>
             <form class="navbar-form navbar-left addComment" name="commentForm" ng-submit="createComment()" novalidate ng-show='add'>
-            <div class="commentForm" ng-class="{'has-error':commentForm.author.$invalid && submitted}">
+            <div class="commentForm" ng-class="{'has-error':commentForm.author.$invalid && submitComment}">
               <label for="title">Author</label>
               <input type="text" name="author" class="form-control" placeholder="Author" ng-model="newComment.author" required>
             </div>
-            <div class="commentForm" ng-class="{'has-error':commentForm.text.$invalid && submitted}">
+            <div class="commentForm" ng-class="{'has-error':commentForm.text.$invalid && submitComment}">
               <label for="author">Text</label>
               <input type="text" name="text" class="form-control" placeholder="Text" ng-model="newComment.text" required>
             </div>
