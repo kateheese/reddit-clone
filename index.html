@@ -16,7 +16,7 @@
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" href="#">Reddit Clone</a>
+        <a class="navbar-brand" href="#" ng-click="reloadPage()">Reddit Clone</a>
       </div>
       <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
         <ul class="nav navbar-nav">
@@ -74,7 +74,7 @@
           <h3>{{submission.title}} | <span class="glyphicon glyphicon-arrow-up" aria-hidden="true" ng-click="upVote()"></span> <span class="glyphicon glyphicon-arrow-down" aria-hidden="true" ng-click="downVote(submission.id)"></span> <span ng-class="{positive: submission.votes > 0, negative: submission.votes < 0}">{{submission.votes}}</span></h3>
           <p class="author">By {{submission.author}}</p>
           <p>{{submission.description}}</p>
-          <p>{{submission.date | date: "MMM d 'at' h:mm a"}} | <span ng-click="show == false ? show = true : show = false"><span class="glyphicon glyphicon-comment" aria-hidden="true"></span> <ng-pluralize count="submission.comments.length"
+          <p>{{ submission.date | amCalendar }} | <span ng-click="show == false ? show = true : show = false"><span class="glyphicon glyphicon-comment" aria-hidden="true"></span> <ng-pluralize count="submission.comments.length"
           when="{'1': '1 comment',
                 'other': '{} comments'}">
           </ng-pluralize></span> | <span ng-click="add == false ? add = true : add = false"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span> Add Comment</span></p>
@@ -98,6 +98,8 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.4/angular.min.js"></script>
+  <script src="http://cdnjs.cloudflare.com/ajax/libs/moment.js/2.9.0/moment.min.js"></script>
+  <script src="http://cdnjs.cloudflare.com/ajax/libs/angular-moment/0.9.0/angular-moment.min.js"></script>
   <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.0-beta.1/angular-animate.js"></script>
   <script type="text/javascript" src="main.js"></script>
 </body>
