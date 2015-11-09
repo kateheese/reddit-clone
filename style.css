@@ -26,6 +26,11 @@ a {
   display: inline-block;
 }
 
+.button:hover {
+  cursor: pointer;
+  opacity: 0.7;
+}
+
 .post.ng-enter {
   animation: fadeIn 1s;
 }
