@@ -32,33 +32,33 @@ a {
 }
 
 .post.ng-enter {
-  animation: fadeIn 1s;
+  animation: fadeIn 0.5s;
 }
 
 .post.ng-leave {
-  animation: fadeOut 1s;
+  animation: fadeOut 0.5s;
 }
 
 .submit-form.ng-hide-remove {
-  animation: zoomIn 1s;
+  animation: zoomIn 0.5s;
 }
 
 .submit-form.ng-hide-add {
-  animation: zoomOut 1s;
+  animation: zoomOut 0.5s;
 }
 
 .comments.ng-hide-remove {
-  animation: fadeInDown 1s;
+  animation: fadeInDown 0.5s;
 }
 
 .comments.ng-hide-add {
-  animation: fadeOutUp 1s;
+  animation: fadeOutUp 0.5s;
 }
 
 .addComment.ng-hide-remove {
-  animation: fadeInDown 1s;
+  animation: fadeInDown 0.5s;
 }
 
 .addComment.ng-hide-add {
-  animation: fadeOutUp 1s;
+  animation: fadeOutUp 0.5s;
 }
