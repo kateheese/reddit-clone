@@ -1,1 +1,0 @@
-angular.module('reddit', ['ngAnimate', 'angularMoment']);
